@@ -4,6 +4,8 @@ export interface Row {
     name: string;
     age: number;
     address: string;
+    nickName:string;
+    business:string;
 }
 // 编辑表格props
 export interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {

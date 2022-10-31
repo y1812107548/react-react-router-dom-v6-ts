@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
-import { Form, Popconfirm, Table, Typography } from 'antd'
+import { Form, Popconfirm, Table, Tooltip, Typography } from 'antd'
 import EditableCell from './components/EditableCell'
 import { Row } from './types/common'
 
 const originData: Row[] = []
+const date = new Date()
 for (let i = 0; i < 100; i++) {
     originData.push({
-        key: i.toString(),
+        key: date.getTime() + i.toString(),
         name: 'edrward' + i,
+        nickName: 'Joker' + i,
+        business: '客服组',
         age: 19,
-        address: 'London park no.' + i
+        address: 'London park no.333333333333333333333333333333333333333' + i
     })
 }
 
@@ -18,7 +21,7 @@ const User: React.FC = () => {
     const [form] = Form.useForm()
     const [data, setData] = useState<Row[]>([]);
     const [editingKey, setEditingKey] = useState<string>('');
-    const [loading,setLoading] = useState<boolean>(true)
+    const [loading, setLoading] = useState<boolean>(true)
     // 模拟接口
     setTimeout(() => {
         setData(originData)
@@ -57,27 +60,64 @@ const User: React.FC = () => {
         form.setFieldsValue({ name: '', age: '', address: '', ...record })
         setEditingKey(record.key)
     }
+    // 跳转详情
+    const gotoDetail = (row: Row) => {
+        console.log(row);
+    }
     const columns = [
+        {
+            title: 'ID',
+            dataIndex: 'key',
+            width: 200,
+            render: (key: React.Key, record: Row) => <a onClick={() => gotoDetail(record)}> {key} </a>,
+            editable: false,
+            fixed: 'left' as 'left'
+        },
         {
             title: '名字',
             dataIndex: 'name',
-            width: '25%',
+            width: 100,
             editable: true,
+        },
+        {
+            title: '昵称',
+            dataIndex: 'nickName',
+            width: 100,
+            editable: true
+        },
+        {
+            title: '所属业务',
+            dataIndex: 'business',
+            width: 200,
+            editable: true
         },
         {
             title: '年龄',
             dataIndex: 'age',
-            width: '15%',
+            width: 100,
             editable: true,
         },
         {
             title: '地址',
             dataIndex: 'address',
-            width: '40%',
+            ellipsis: true,
             editable: true,
         },
         {
+            title: '地址',
+            dataIndex: 'address',
+            ellipsis: {
+                showTitle:false
+            },
+            editable: true,
+            render:(address:Row['address']) =>(
+                <Tooltip placement='topLeft' title={address}>{address}</Tooltip>
+            )
+        },
+        {
             title: '操作',
+            fixed: 'right' as 'right',
+            width: 200,
             dataIndex: 'operation',
             render: (_: any, record: Row) => {
                 const editable = isEditable(record)
@@ -125,6 +165,7 @@ const User: React.FC = () => {
                 bordered
                 dataSource={data}
                 columns={mergedColumns}
+                scroll={{ x: 1500 }}
                 pagination={{
                     onChange: handleCancel,
                 }}

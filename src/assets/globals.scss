@@ -12,7 +12,8 @@
   transform: translateX(0%);
 }
 
-.fade-enter-active,.fade-exit-active{
+.fade-enter-active,
+.fade-exit-active {
   transition: all 300ms;
 }
 
@@ -34,9 +35,13 @@
   transition: opacity 300ms, transform 300ms;
 }
 
-
 .ant-form-item-explain {
   position: absolute;
   top: 100%;
   font-size: 12px;
 }
+
+// .ant-table-fixed-left table,
+// .ant-table-fixed-right table {
+//   width: min-content;
+// }
