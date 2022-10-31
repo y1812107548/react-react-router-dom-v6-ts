@@ -1,0 +1,16 @@
+1、安装 react
+npm install -g create-react-app
+create-react-app -V // 注意：V 是大写的 
+
+2、创建项目
+npx create-react-app <项目名称>// 注意：名字不能包含大写字母。我的是 my-app
+3、创建ts项目
+npx create-react-app my-app --template typescript
+
+npm start
+
+4、发布
+npm build
+
+5、Argument of type 'Row[]' is not assignable to parameter of type 'SetStateAction<never[]>
+在使用useState需要申明类型 比如useState<Row[]>([])
