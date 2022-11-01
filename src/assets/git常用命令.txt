@@ -1,0 +1,16 @@
+1、git回退上一个版本，只要commit以后就会生成一个版本。这是最常用的命令，作用是回退上个版本，会删除提交记录和修改文件。
+
+git reset --hard HEAD^
+
+2、已经commit但是没有push，soft保留修改的记录和文件，撤销已经commit记录，用该命令所修改的文件仍在暂存区。
+
+git reset --soft HEAD^
+
+也可以写成HEAD~1，回退2个版本HEAD~2，回退100个以此类推。
+
+3、回退到指定版本，根据廖雪峰官网，可以回退过去也可以回到未来
+1094a是commit id 只需要前几位git就可以自动找到
+
+git reset --hard 1094a
+
+4、
