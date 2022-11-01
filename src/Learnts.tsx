@@ -58,6 +58,7 @@ function printName(obj: { first: string; last?: string }) {
 
     // A safe alternative using modern JavaScript syntax:
     console.log(obj.last?.toUpperCase());
+    
 }
 const Learnts = () => {
     return (
